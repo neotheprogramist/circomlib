@@ -81,6 +81,14 @@ template PoseidonEx(nInputs, nOuts) {
     var M[t][t] = POSEIDON_M(t);
     var P[t][t] = POSEIDON_P(t);
 
+    for (var j=0; j<nInputs; j++) {
+        log("The inputs value at ", j, " is: ", inputs[j]);
+    }
+    log("The t value is ", t);
+    log("The N_ROUNDS_P[t - 2] value is ", N_ROUNDS_P[t - 2]);
+    log("The t*nRoundsF + nRoundsP value is ", t*nRoundsF + nRoundsP);
+    log("The N_ROUNDS_P[t-2]  *  (t*2-1) value is ", N_ROUNDS_P[t-2]  *  (t*2-1));
+
     component ark[nRoundsF];
     component sigmaF[nRoundsF][t];
     component sigmaP[nRoundsP];
@@ -205,4 +213,5 @@ template Poseidon(nInputs) {
         pEx.inputs[i] <== inputs[i];
     }
     out <== pEx.out[0];
+    log("The out value is: ", out);
 }
